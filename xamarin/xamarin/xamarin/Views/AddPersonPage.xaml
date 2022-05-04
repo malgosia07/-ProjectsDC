@@ -1,0 +1,33 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="xamarin.Views.AddPersonPage"
+             xmlns:local="clr-namespace:xamarin.ViewModels"
+             BackgroundColor="{AppThemeBinding 
+                    Dark={StaticResource WindowBackgroundColorDark}, 
+                    Light={StaticResource WindowBackgroundColor}}">
+
+    <ContentPage.BindingContext>
+        <local:AddPersonViewModel/>
+    </ContentPage.BindingContext>
+    
+    <ContentPage.Content>
+        <StackLayout Spacing="5" Padding="15">
+            <Label Style="{StaticResource LabelMedium}" Text="ID" FontSize="Medium" IsEnabled="False"/>
+            <Entry Style="{StaticResource BaseEntry}" Text="{Binding Person.IdPerson, Mode=TwoWay}" FontSize="Medium" IsEnabled="False" />
+            <Label Style="{StaticResource LabelMedium}" Text="Name" FontSize="Medium"/>
+            <Entry Style="{StaticResource BaseEntry}" Text="{Binding Person.NamePerson, Mode=TwoWay}" FontSize="Medium" />
+            <Label Style="{StaticResource LabelMedium}" Text="Address" FontSize="Medium"/>
+            <Editor Style="{StaticResource BaseEntry}" Text="{Binding Person.AddressPerson, Mode=TwoWay}" AutoSize="TextChanges"  FontSize="Medium"  Margin="0"/>
+            <Label Style="{StaticResource LabelMedium}" Text="Image" FontSize="Medium"/>
+            <Editor Style="{StaticResource BaseEntry}" Text="{Binding Person.ImagePerson, Mode=TwoWay}" AutoSize="TextChanges"  FontSize="Medium"  Margin="0"/>
+            
+            <StackLayout Orientation="Horizontal">
+                <Button  Text="Save" Command="{Binding SaveCommand}" HorizontalOptions="FillAndExpand"/>
+                <Button  Text="Cancel" Command="{Binding CancelCommand}" HorizontalOptions="FillAndExpand"/>
+            </StackLayout>
+        </StackLayout>
+
+        
+    </ContentPage.Content>
+</ContentPage>

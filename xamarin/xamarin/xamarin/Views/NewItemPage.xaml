@@ -1,0 +1,29 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="xamarin.Views.NewItemPage"
+             Shell.PresentationMode="ModalAnimated"
+             Title="New Item"
+             xmlns:ios="clr-namespace:Xamarin.Forms.PlatformConfiguration.iOSSpecific;assembly=Xamarin.Forms.Core"
+             ios:Page.UseSafeArea="true"
+             BackgroundColor="{AppThemeBinding 
+                    Dark={StaticResource WindowBackgroundColorDark}, 
+                    Light={StaticResource WindowBackgroundColor}}">
+    <ContentPage.Content>
+        <StackLayout Spacing="3" Padding="15">
+            <Label Style="{StaticResource LabelMicro}" Text="Text"  />
+            <Entry Style="{StaticResource BaseEntry}" Text="{Binding Text, Mode=TwoWay}" FontSize="Medium" />
+            <Label Style="{StaticResource LabelMicro}" Text="Chapters"  />
+            <Editor Style="{StaticResource BaseEntry}" Text="{Binding Chapters, Mode=TwoWay}" AutoSize="TextChanges" FontSize="Medium" Margin="0" />
+            <Label Style="{StaticResource LabelMicro}" Text="Volumes"  />
+            <Editor Style="{StaticResource BaseEntry}" Text="{Binding Volumes, Mode=TwoWay}" AutoSize="TextChanges" FontSize="Medium" Margin="0" />
+            <Label Style="{StaticResource LabelMicro}" Text="Episodes"  />
+            <Editor Style="{StaticResource BaseEntry}" Text="{Binding Episodes, Mode=TwoWay}" AutoSize="TextChanges" FontSize="Medium" Margin="0" />
+            <StackLayout Orientation="Horizontal">
+                <Button Text="Cancel" Command="{Binding CancelCommand}" HorizontalOptions="FillAndExpand"></Button>
+                <Button Text="Save" Command="{Binding SaveCommand}" HorizontalOptions="FillAndExpand"></Button>
+            </StackLayout>
+        </StackLayout>
+    </ContentPage.Content>
+    
+</ContentPage>

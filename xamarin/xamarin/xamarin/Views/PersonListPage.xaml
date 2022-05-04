@@ -1,0 +1,85 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:local="clr-namespace:xamarin.ViewModels"
+             xmlns:model="clr-namespace:xamarin.Models"
+             x:Class="xamarin.Views.PersonListPage"
+             BackgroundColor="{AppThemeBinding 
+                    Dark={StaticResource WindowBackgroundColorDark}, 
+                    Light={StaticResource WindowBackgroundColor}}">
+
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Text="Add" Command="{Binding AddPersonCommand}"/>
+    </ContentPage.ToolbarItems>
+    
+    
+    
+    <ContentPage.Content>
+        <StackLayout>
+            <RefreshView x:DataType="local:PersonListViewModel" Command="{Binding LoadPersonCommand}"
+                         IsRefreshing="{Binding IsBusy, Mode=OneWay}">
+                <CollectionView ItemsSource="{Binding Person}" SelectionMode="None">
+
+                    <CollectionView.Header>
+                        <StackLayout BackgroundColor="LightGray">
+                            <Label Margin="10,0,0,0"
+                             Text="Straw Hat Pirates"
+                             HorizontalOptions="Center"
+                             FontSize="Large"
+                             FontAttributes="Bold" />
+                        </StackLayout>
+                    </CollectionView.Header>
+                    <CollectionView.Footer>
+                        <StackLayout BackgroundColor="LightGray">
+                            <Label Margin="10,0,0,0"
+                             HorizontalOptions="Center"
+                             Text="End List"
+                             FontSize="Small"
+                             FontAttributes="Bold" />
+                        </StackLayout>
+                    </CollectionView.Footer>
+
+                    <CollectionView.ItemTemplate>
+                        <DataTemplate>
+                            <StackLayout x:DataType="model:Person">
+                                <SwipeView 
+                                    BackgroundColor="{AppThemeBinding 
+                                        Dark={StaticResource WindowBackgroundColorDark}, 
+                                        Light={StaticResource WindowBackgroundColor}}">
+                                    <SwipeView.RightItems>
+                                        <SwipeItems>
+                                            <SwipeItem Text="Delete"  BackgroundColor="Red" Command ="{Binding Source={RelativeSource AncestorType={x:Type local:PersonListViewModel}},
+                                            Path=PersonTappedDelete}" CommandParameter="{Binding .}"/>
+                                        </SwipeItems>
+                                    </SwipeView.RightItems>
+                                    <Grid Padding="5">
+                                        <Frame Style="{DynamicResource Card}" CornerRadius="10" HasShadow="True">
+                                        <StackLayout Orientation="Horizontal">
+                                            <Image Grid.RowSpan="2" Source="{Binding ImagePerson}" Aspect="AspectFill" HeightRequest="60" WidthRequest="60"></Image>
+                                            <StackLayout>
+                                                <Label Style="{StaticResource BaseLabel}" Grid.Column="1" Text="{Binding NamePerson}" FontAttributes="Bold"/>
+                                                <Label Style="{StaticResource BaseLabel}" Grid.Row="1" Grid.Column="1" Text="{Binding AddressPerson}" VerticalOptions="End"/>
+                                            </StackLayout>
+                                            <StackLayout VerticalOptions="Center" HorizontalOptions="EndAndExpand">
+                                                <Image Source="edit.png" Grid.Column="3" WidthRequest="30" HeightRequest="30" VerticalOptions="End">
+                                                    <Image.GestureRecognizers>
+                                                        <TapGestureRecognizer NumberOfTapsRequired="1"
+                                                         Command="{Binding Source={RelativeSource AncestorType={x:Type local:PersonListViewModel}}, Path=PersonTappedEdit}" CommandParameter="{Binding .}"                     />
+
+
+                                                    </Image.GestureRecognizers>
+                                                </Image>
+                                            </StackLayout>
+                                        </StackLayout>
+                                    </Frame>
+                                </Grid>
+                               </SwipeView>
+                            </StackLayout>
+                        </DataTemplate>
+                    </CollectionView.ItemTemplate>
+                   
+                </CollectionView>
+            </RefreshView>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

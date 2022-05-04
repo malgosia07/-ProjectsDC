@@ -1,0 +1,21 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="xamarin.Views.ItemDetailPage"
+             Title="{Binding Title}"
+             BackgroundColor="{AppThemeBinding 
+                    Dark={StaticResource WindowBackgroundColorDark}, 
+                    Light={StaticResource WindowBackgroundColor}}">
+
+    <StackLayout Spacing="20" Padding="15">
+        <Label Style="{StaticResource BaseLabel}" Text="Text:"  />
+        <Label Style="{StaticResource LabelLarge}" Text="{Binding Text }" />
+        <Label Style="{StaticResource BaseLabel}" Text="Chapters:"  />
+        <Label Style="{StaticResource LabelLarge}" Text="{Binding Chapters}" />
+        <Label Style="{StaticResource BaseLabel}" Text="Volumes:"  />
+        <Label Style="{StaticResource LabelLarge}" Text="{Binding Volumes}" />
+        <Label Style="{StaticResource BaseLabel}" Text="Episodes:"  />
+        <Label Style="{StaticResource LabelLarge}" Text="{Binding Episodes}" />
+    </StackLayout>
+    
+</ContentPage>
